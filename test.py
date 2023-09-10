@@ -1,6 +1,7 @@
 import unittest
 
 from src.PyDowner.utils import parse_google_drive_url
+from src.PyDowner.utils.content_check import get_filename
 
 
 class TestGoogleParser(unittest.TestCase):
@@ -11,10 +12,17 @@ class TestGoogleParser(unittest.TestCase):
             "https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/view?usp=sharing&resourcekey=0-qN1jcaZnoZY0m2KAt38-pA"
         ]
 
+        filenames = [
+            "1gb.test",
+            "100mb.test",
+            "10mb.test"
+        ]
+
         for i in range(len(data)):
             with self.subTest(i=i):
                 result = parse_google_drive_url.parse(data[i])
-                print(f"url: {result}, filename: {parse_google_drive_url.test(result)}")
+                print(f"url: {result}, filename: {get_filename(result)}")
+                self.assertEqual(get_filename(result), filenames[i])
                 self.assertTrue(parse_google_drive_url.test(result))
 
 
