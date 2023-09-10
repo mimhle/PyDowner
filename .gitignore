@@ -1,0 +1,52 @@
+# Ignore virtual environments
+venv/
+env/
+.venv/
+.env/
+.conda/
+pyvenv.cfg
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+.vs/
+.sage/
+.pycharm/
+.pyre/
+
+# Ignore log and temporary files
+*.log
+*.tmp
+*.swp
+
+# Ignore dependency directories
+/pipenv/
+/poetry/
+
+# Ignore user-specific configuration files
+.bash_history
+.gitconfig
+
+# Ignore build and output directories
+/build/
+/dist/
+/output/
+
+# Ignore database files
+*.db
+*.sqlite
+
+# Ignore environment configuration files
+.env
+.env.local
+.env.dev
+/Lib/
+/Scripts/
+
+# Ignore *.egg-info directories
+*.egg-info/
