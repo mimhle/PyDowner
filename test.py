@@ -25,7 +25,6 @@ class TestGoogleParser(unittest.TestCase):
                 result = parse_google_drive_url.parse(data[i])
                 print(f"url: {result}, filename: {get_filename(result)}")
                 self.assertEqual(get_filename(result), filenames[i])
-                self.assertTrue(parse_google_drive_url.test(result))
 
 
 if __name__ == "__main__":

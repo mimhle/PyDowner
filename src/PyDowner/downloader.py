@@ -31,8 +31,6 @@ def download(
     if status == 200:
         # get filename
         filename = get_filename(url) if save_name is None else save_name
-        if not filename:
-            filename = os.path.basename(url)
         # check if file already exists
         if os.path.exists(os.path.join(path, filename)) and not force_download:
             print(f"File {filename} already exists.")
