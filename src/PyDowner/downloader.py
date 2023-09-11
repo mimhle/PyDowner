@@ -5,11 +5,7 @@ import requests
 from .utils.parse_google_drive_url import parse
 from .utils.content_check import get_filename, status_code
 
-# check if running in a notebook
-if 'get_ipython' in globals():
-    from tqdm.notebook import tqdm
-else:
-    from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 def download(
