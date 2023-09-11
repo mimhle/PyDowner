@@ -9,13 +9,15 @@ class TestGoogleParser(unittest.TestCase):
         data = [
             "https://drive.google.com/u/0/uc?id=0B1MVW1mFO2zmZHVRWEQ3Rkc3SVE&export=download",
             "https://drive.google.com/u/0/uc?id=0B1MVW1mFO2zmdGhyaUJESWROQkE&export=download",
-            "https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/view?usp=sharing&resourcekey=0-qN1jcaZnoZY0m2KAt38-pA"
+            "https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/view?usp=sharing&resourcekey=0-qN1jcaZnoZY0m2KAt38-pA",
+            "http://ipv4.download.thinkbroadband.com/20MB.zip",
         ]
 
         filenames = [
             "1gb.test",
             "100mb.test",
-            "10mb.test"
+            "10mb.test",
+            "20MB.zip"
         ]
 
         for i in range(len(data)):
