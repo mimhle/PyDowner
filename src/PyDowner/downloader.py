@@ -15,7 +15,7 @@ def download(
         *,
         force_download: bool = False,
         quiet: bool = False,
-        block_size: int = 1024,
+        block_size: int = 10 * 1024 * 1024,
 ) -> str:
     # create directory if it doesn't exist
     if not os.path.exists(path):
