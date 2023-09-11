@@ -12,6 +12,7 @@ def download(
         url: str,
         path: str,
         save_name: str = None,
+        *,
         force_download: bool = False,
         quiet: bool = False,
         block_size: int = 1024,
