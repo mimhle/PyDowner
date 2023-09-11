@@ -4,20 +4,18 @@ from src.PyDowner.utils import parse_google_drive_url
 from src.PyDowner.utils.content_check import get_filename
 
 
-class TestGoogleParser(unittest.TestCase):
-    def test_google_parse(self):
+class TestGetName(unittest.TestCase):
+    def test_get_name(self):
         data = [
-            "https://drive.google.com/u/0/uc?id=0B1MVW1mFO2zmZHVRWEQ3Rkc3SVE&export=download",
-            "https://drive.google.com/u/0/uc?id=0B1MVW1mFO2zmdGhyaUJESWROQkE&export=download",
-            "https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/view?usp=sharing&resourcekey=0-qN1jcaZnoZY0m2KAt38-pA",
             "http://ipv4.download.thinkbroadband.com/20MB.zip",
+            "https://huggingface.co/bigscience/bloom/resolve/main/model_00001-of-00072.safetensors",
+            "https://huggingface.co/bigscience/bloom/resolve/main/README.md"
         ]
 
         filenames = [
-            "1gb.test",
-            "100mb.test",
-            "10mb.test",
-            "20MB.zip"
+            "20MB.zip",
+            "model_00001-of-00072.safetensors",
+            "README.md",
         ]
 
         for i in range(len(data)):
