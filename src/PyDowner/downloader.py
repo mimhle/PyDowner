@@ -10,7 +10,7 @@ from tqdm.auto import tqdm
 
 def download(
         url: str,
-        path: str,
+        path: str = "./",
         save_name: str = None,
         *,
         force_download: bool = False,
