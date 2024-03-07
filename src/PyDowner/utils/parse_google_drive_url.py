@@ -2,6 +2,7 @@ import re
 import urllib.parse
 import urllib.request
 import requests
+import bs4
 
 
 # original code: https://github.com/wkentaro/gdown/blob/main/gdown/download.py
@@ -48,10 +49,16 @@ def get_url_from_gdrive_confirmation(contents: str) -> str:
             url = "https://docs.google.com" + m.groups()[0]
             url = url.replace("&amp;", "&")
             break
-        m = re.search('id="download-form" action="(.+?)"', line)
-        if m:
-            url = m.groups()[0]
-            url = url.replace("&amp;", "&")
+        soup = bs4.BeautifulSoup(line, features="html.parser")
+        form = soup.select_one("#download-form")
+        if form is not None:
+            url = form["action"].replace("&amp;", "&")
+            url_components = urllib.parse.urlsplit(url)
+            query_params = urllib.parse.parse_qs(url_components.query)
+            for param in form.findChildren("input", attrs={"type": "hidden"}):
+                query_params[param["name"]] = param["value"]
+            query = urllib.parse.urlencode(query_params, doseq=True)
+            url = urllib.parse.urlunsplit(url_components._replace(query=query))
             break
         m = re.search('"downloadUrl":"([^"]+)', line)
         if m:
@@ -64,7 +71,12 @@ def get_url_from_gdrive_confirmation(contents: str) -> str:
             error = m.groups()[0]
             raise RuntimeError(error)
     if not url:
-        raise RuntimeError("Cannot retrieve the link of the file.")
+        raise RuntimeError(
+            "Cannot retrieve the public link of the file. "
+            "You may need to change the permission to "
+            "'Anyone with the link', or have had many accesses. "
+            "Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.",
+        )
     return url
 
 
