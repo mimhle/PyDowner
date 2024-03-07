@@ -20,7 +20,16 @@ def google_drive_parse_url(url: str) -> tuple[bool | str, bool]:
         if len(file_ids) == 1:
             file_id = file_ids[0]
     else:
-        patterns = [r"^/file/d/(.*?)/view$", r"^/presentation/d/(.*?)/edit$"]
+        patterns = [
+            r"^/file/d/(.*?)/(edit|view)$",
+            r"^/file/u/[0-9]+/d/(.*?)/(edit|view)$",
+            r"^/document/d/(.*?)/(edit|htmlview|view)$",
+            r"^/document/u/[0-9]+/d/(.*?)/(edit|htmlview|view)$",
+            r"^/presentation/d/(.*?)/(edit|htmlview|view)$",
+            r"^/presentation/u/[0-9]+/d/(.*?)/(edit|htmlview|view)$",
+            r"^/spreadsheets/d/(.*?)/(edit|htmlview|view)$",
+            r"^/spreadsheets/u/[0-9]+/d/(.*?)/(edit|htmlview|view)$",
+        ]
         for pattern in patterns:
             match = re.match(pattern, parsed.path)
             if match:
