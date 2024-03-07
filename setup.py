@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="PyDowner",
-    version="0.0.7",
+    version="0.0.8",
     author="mimhle",
     author_email="lengocminh19092004@gmail.com",
     description="A simple downloader for Python",
