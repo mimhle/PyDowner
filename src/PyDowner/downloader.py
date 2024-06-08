@@ -16,6 +16,7 @@ def download(
         force_download: bool = False,
         quiet: bool = False,
         block_size: int = 10 * 1024 * 1024,
+        header: dict | None = None,
 ) -> str:
     # create directory if it doesn't exist
     if not os.path.exists(path):
@@ -33,7 +34,10 @@ def download(
             print(f"File {filename} already exists.")
             return filename
         # download file
-        response = requests.get(url, stream=True, allow_redirects=True)
+        if header is not None:
+            response = requests.get(url, stream=True, headers=header, allow_redirects=True)
+        else:
+            response = requests.get(url, stream=True, allow_redirects=True)
         with open(os.path.join(path, filename), "wb") as f:
             total_size = int(response.headers.get("content-length", 0))
             with tqdm(
